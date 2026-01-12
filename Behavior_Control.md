@@ -7,6 +7,8 @@ If you want to change the behavior configuration, you can copy one of the prompt
 
 There are also projects for which you can define special memory rules. Project rules override global rules, so you can easily enforce a completely different tone for each project.
 
+Here are the prompts I am using:
+
 ### Queries 
 ```
 Describe your current behavior configuration. Create a consolidated, compact, or technically focused version.
