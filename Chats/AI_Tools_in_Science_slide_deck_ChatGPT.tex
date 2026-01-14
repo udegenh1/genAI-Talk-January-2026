@@ -1,0 +1,403 @@
+\documentclass{beamer}
+%
+\usetheme[block=fill, background=light] {metropolis}
+\setbeamertemplate{theorems}[]
+\usepackage{FiraSans}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage[ngerman]{babel}
+\usepackage{manfnt}
+\usepackage{graphicx,import}
+\usepackage{calc}
+\usepackage{booktabs}
+\usepackage{csquotes}
+\usepackage{listings}
+% Setup style for code sections
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+
+% Setup style for code sections
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+
+\lstdefinestyle{UDstyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\lstset{style=UDstyle}
+
+
+%{\tiny }
+\usepackage{tabto}
+\def\margindbend{\protect\marginsymbolhelper}
+\def\marginsymbolhelper{\tabto*{-0.51cm}\makebox[0cm]{\dbend}\tabto*{\TabPrevPos}}
+
+\bibliographystyle{mpidsrr_bibtexstyle}
+%\usepackage{biblatex}
+%\addbibresource{/Users/udegenh1/ownCloud/MPIDS/Forschung/UD_Literatur.bib}
+
+\title{Large Language Models and Information Discovery}
+%\title{Generative Sprachmodelle und das Orakel-Problem}
+%\date{\today}
+\date{03/05/2025}
+\author{Ulrich Degenhardt\inst{1}}
+%\institute{Max-Planck-Institute for  Dynamics and  Self-Organization}
+\institute[MPIDS] {\inst{1}%
+	Max-Planck-Institut for  Dynamics and  Self-Organization
+	\newline Göttingen}
+
+
+
+
+% ==================================================
+% Talk: AI Tools in Science - Large Language Models in Scientific Workflows
+% ==================================================
+
+\title[AI Tools in Science]{AI Tools in Science:\\Large Language Models in Scientific Workflows}
+\author[U.~Degenhardt]{Ulrich Degenhardt}
+\date[40 min]{Draft Talk -- 40 minutes}
+
+\begin{document}
+
+% ----------------------------------
+\begin{frame}
+  \titlepage
+  \begin{flushright}
+    \footnotesize Time: 0:00--0:30
+  \end{flushright}
+\end{frame}
+
+% ----------------------------------
+\begin{frame}{Why This Talk?}
+  \begin{itemize}
+    \item Scientists quietly use LLMs in their workflows.
+    \item But LLMs are known for hallucinations and unreliability.
+    \item Goal: Explore what LLMs can \emph{actually} do in scientific workflows.
+    \item Perspective: personal, experience-based, not systematic research.
+  \end{itemize}
+  \vfill
+  \begin{flushright}
+    \footnotesize Time: 0:30--2:00
+  \end{flushright}
+\end{frame}
+
+% ----------------------------------
+\begin{frame}{Example 1: The ``Magic/Miracle'' Cartoon}
+  \begin{itemize}
+    \item Vague memory: cartoon with scientists, equations, and ``magic/miracle'' in the middle.
+    \item Google search fails: no precise keywords.
+    \item LLM reconstructs the reference and finds Sidney Harris's famous cartoon.
+    \item Demonstrates fuzzy retrieval and context reconstruction.
+  \end{itemize}
+  \vfill
+  \begin{flushright}
+    \footnotesize Time: 2:00--3:00
+  \end{flushright}
+\end{frame}
+
+% ----------------------------------
+\begin{frame}{Example 2: Solving a Math Problem from a Screenshot}
+  \begin{itemize}
+    \item Screenshot of a linear algebra exercise in a PDF.
+    \item LLM reads and interprets the mathematics (including \LaTeX{} notation).
+    \item Produces a full, seemingly correct proof.
+    \item Key point: impressive reasoning behaviour --- but correctness must be checked.
+  \end{itemize}
+  \vfill
+  \begin{flushright}
+    \footnotesize Time: 3:00--4:00
+  \end{flushright}
+\end{frame}
+
+% ----------------------------------
+\begin{frame}{Early Lessons}
+  \begin{itemize}
+    \item LLMs can do tasks that go beyond simple search.
+    \item They appear to reason, summarise, and infer.
+    \item At the same time: hallucinations are frequent.
+    \item Takeaway: impressive \emph{capabilities} but fragile \emph{reliability}.
+  \end{itemize}
+  \vfill
+  \begin{flushright}
+    \footnotesize Time: 4:00--7:00
+  \end{flushright}
+\end{frame}
+
+% ----------------------------------
+\begin{frame}{A Physicist's Skepticism About ML}
+  \begin{itemize}
+    \item From a physics viewpoint, ML often looks like extreme curve fitting.
+    \item Neural networks with $\sim 10^{11}$ parameters: ``10th-order polynomial through 3 data points''.
+    \item Lack of conceptual simplicity and universality.
+    \item ML/AI often feels epistemically unsatisfying compared to physical theories.
+  \end{itemize}
+  \vfill
+  \begin{flushright}
+    \footnotesize Time: 7:00--8:30
+  \end{flushright}
+\end{frame}
+
+% ----------------------------------
+\begin{frame}{But It Works\ldots}
+  \begin{itemize}
+    \item Despite theoretical unease, ML works remarkably well in practice.
+    \item Emergent behaviour at scale that no one expected 20 years ago.
+    \item Physicists must grapple with tools that are powerful but opaque.
+    \item This tension underlies the rest of the talk.
+  \end{itemize}
+  \vfill
+  \begin{flushright}
+    \footnotesize Time: 8:30--10:00
+  \end{flushright}
+\end{frame}
+
+% ----------------------------------
+\begin{frame}{Practical Realities of LLMs}
+  \begin{itemize}
+    \item Stochastic: same question can yield different answers.
+    \item Very verbose: Brandolini's Law --- debunking $>$ generating.
+    \item Limited context window: they \emph{forget} earlier parts of the conversation.
+    \item Golden rule: ask questions that can be verified or falsified.
+  \end{itemize}
+  \vfill
+  \begin{flushright}
+    \footnotesize Time: 10:00--11:30
+  \end{flushright}
+\end{frame}
+
+% ----------------------------------
+\begin{frame}{Infrastructure for Scientific Use}
+  \begin{itemize}
+    \item Treat LLM interactions like experiments.
+    \item Use note-taking tools (e.g.\ Obsidian) as a ``second brain''.
+    \item Export chats as markdown and store them as a lab notebook for AI.
+    \item This makes results reproducible and reviewable later.
+  \end{itemize}
+  \vfill
+  \begin{flushright}
+    \footnotesize Time: 11:30--13:00
+  \end{flushright}
+\end{frame}
+
+% ----------------------------------
+\begin{frame}{Behaviour Control}
+  \begin{itemize}
+    \item Prompting can change global behaviour across a session.
+    \item Examples:
+      \begin{itemize}
+        \item Numbered dialogue format for structured discussion.
+        \item ``No Yes-Man'': explicitly ask the model to challenge weak ideas.
+        \item \emph{Advocatus diaboli}: temporarily activate an adversarial role.
+      \end{itemize}
+    \item Aim: steer LLMs toward scientifically useful and critical behaviour.
+  \end{itemize}
+  \vfill
+  \begin{flushright}
+    \footnotesize Time: 13:00--16:00
+  \end{flushright}
+\end{frame}
+
+% ----------------------------------
+\begin{frame}{LLMs and Anthropomorphism}
+  \begin{itemize}
+    \item LLMs are conversationally fluent: they effectively pass the Turing test.
+    \item Humans are primed to attribute mind, emotion, and intention.
+    \item But LLMs have no consciousness, goals, or feelings.
+    \item Empathy, politeness, humour: all simulated pattern generation.
+  \end{itemize}
+  \vfill
+  \begin{flushright}
+    \footnotesize Time: 16:00--17:30
+  \end{flushright}
+\end{frame}
+
+% ----------------------------------
+\begin{frame}{System Trust vs.\ Social Trust}
+  \begin{itemize}
+    \item Appropriate analogy: tools like \texttt{sed}, Linux, LAPACK.
+    \item These tools are ``battle-tested'' in adversarial, high-pressure use.
+    \item Trust is based on documented behaviour and known failure modes.
+    \item LLMs should be evaluated as technical instruments, not colleagues.
+  \end{itemize}
+  \vfill
+  \begin{flushright}
+    \footnotesize Time: 17:30--21:00
+  \end{flushright}
+\end{frame}
+
+% ----------------------------------
+\begin{frame}{Stage 1: ``Google on Steroids''}
+  \begin{itemize}
+    \item Paste compiler or interpreter error messages into the LLM.
+    \item Get direct explanations and potential fixes.
+    \item Ask ``manual-level'' questions (e.g.\ matplotlib legends, API usage).
+    \item Saves time compared to manual search + StackOverflow.
+  \end{itemize}
+  \vfill
+  \begin{flushright}
+    \footnotesize Time: 21:00--22:30
+  \end{flushright}
+\end{frame}
+
+% ----------------------------------
+\begin{frame}{Stage 2: Instant Prototyping}
+  \begin{itemize}
+    \item Turn ideas into minimal working examples quickly.
+    \item Example: path signatures from CSV time series with \texttt{iisignature}.
+    \item LLMs can generate drafts in many languages: Python, Julia, C++, Fortran, Go.
+    \item Barrier from ``I have an idea'' to ``I have running code'' becomes tiny.
+  \end{itemize}
+  \vfill
+  \begin{flushright}
+    \footnotesize Time: 22:30--24:00
+  \end{flushright}
+\end{frame}
+
+% ----------------------------------
+\begin{frame}{Stage 3: Development Assistance}
+  \begin{itemize}
+    \item Example project: Cryptomator-like encryption in Go.
+    \item Long initial prompt describing requirements and constraints.
+    \item LLM proposes architecture, cryptographic choices, and commands.
+    \item Then an iterative loop: compile, copy errors, let LLM fix, repeat.
+  \end{itemize}
+  \vfill
+  \begin{flushright}
+    \footnotesize Time: 24:00--27:00
+  \end{flushright}
+\end{frame}
+
+% ----------------------------------
+\begin{frame}{Leverage and Risks}
+  \begin{itemize}
+    \item Feels like having a bright, tireless PhD student as an assistant.
+    \item Greatly increases personal leverage in software development.
+    \item But: easy to become lazy and stop checking changes carefully.
+    \item Security and correctness require disciplined review --- AI amplifies both good and bad.
+  \end{itemize}
+  \vfill
+  \begin{flushright}
+    \footnotesize Time: 27:00--29:00
+  \end{flushright}
+\end{frame}
+
+% ----------------------------------
+\begin{frame}{AI for Literature Search}
+  \begin{itemize}
+    \item Information abundance: hundreds of millions of papers.
+    \item Semantic Scholar as a large bibliographic database.
+    \item Tools like scienceOS build on top of it for scientists.
+    \item Much better results for literature search than general-purpose LLMs.
+  \end{itemize}
+  \vfill
+  \begin{flushright}
+    \footnotesize Time: 29:00--30:30
+  \end{flushright}
+\end{frame}
+
+% ----------------------------------
+\begin{frame}{Working with Semantic Scholar Tools}
+  \begin{itemize}
+    \item Example query: ``All publications of Ramin Golestanian from 2025''.
+    \item Tool returns a curated list with short descriptions.
+    \item Citation network visualisation helps see connections.
+    \item Limitation: typically up to $\sim 100$ sources per query.
+  \end{itemize}
+  \vfill
+  \begin{flushright}
+    \footnotesize Time: 30:30--32:00
+  \end{flushright}
+\end{frame}
+
+% ----------------------------------
+\begin{frame}{Document Analysis and Evidence Tracking}
+  \begin{itemize}
+    \item Upload many PDFs (100+) and ask questions across the whole set.
+    \item Answers draw on both Semantic Scholar metadata and full text.
+    \item scienceOS highlights exact locations in PDFs that support each answer.
+    \item This explicit grounding increases scientific trust in the tool's output.
+  \end{itemize}
+  \vfill
+  \begin{flushright}
+    \footnotesize Time: 32:00--35:00
+  \end{flushright}
+\end{frame}
+
+% ----------------------------------
+\begin{frame}{Why LLM Summaries Are Hard to Remember}
+  \begin{itemize}
+    \item Generating summaries is easy; remembering them is not.
+    \item Cognitive psychology: memory needs encoding, storage, and retrieval.
+    \item Passive storage in Obsidian is not enough for long-term learning.
+    \item Need spacing, retrieval practice, and active processing.
+  \end{itemize}
+  \vfill
+  \begin{flushright}
+    \footnotesize Time: 35:00--36:30
+  \end{flushright}
+\end{frame}
+
+% ----------------------------------
+\begin{frame}{A Practical Workflow for Summaries}
+  \begin{itemize}
+    \item Step 1: Ask LLM for a detailed summary of a paper.
+    \item Step 2: Write your own 3-sentence meta-summary:
+      \begin{enumerate}
+        \item What is this about?
+        \item What is the core idea?
+        \item Why is this important or surprising?
+      \end{enumerate}
+    \item Step 3: Ask LLM to generate a concept map with labelled edges.
+    \item Combine text + visual map in your notes for better retrieval.
+  \end{itemize}
+  \vfill
+  \begin{flushright}
+    \footnotesize Time: 36:30--39:00
+  \end{flushright}
+\end{frame}
+
+% ----------------------------------
+\begin{frame}{Final Reflections}
+  \begin{itemize}
+    \item Hallucinations are not unique to LLMs; humans make mistakes too.
+    \item Safety comes from critical thinking, scientific method, and engineering practice.
+    \item LLM suggestions are starting points, not final answers.
+    \item Open questions:
+      \begin{itemize}
+        \item Better evidence for behaviour-control strategies.
+        \item Using LLMs as intellectual sparring partners.
+        \item Understanding GitHub repositories with AI.
+        \item Richer descriptions of AI-assisted development workflows.
+      \end{itemize}
+  \end{itemize}
+  \vfill
+  \begin{flushright}
+    \footnotesize Time: 39:00--40:00
+  \end{flushright}
+\end{frame}
+
+\end{document}
